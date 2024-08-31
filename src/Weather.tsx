@@ -29,9 +29,7 @@ const Weather: React.FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string | null>(null);
     const [isCelsius, setIsCelsius] = useState<boolean>(true);
-
-    // Fetch the API key from environment variables
-    const apiKey = process.env.OPENWEATHERMAP_API_KEY;
+    const [userApiKey, setUserApiKey] = useState<string>(process.env.OPENWEATHERMAP_API_KEY || '');
 
     // Function to get the appropriate weather icon based on the weather condition
     const getWeatherIcon = (main: string) => {
@@ -54,13 +52,20 @@ const Weather: React.FC = () => {
     const fetchWeather = async () => {
         setLoading(true);  // Set loading state to true
         setError(null);    // Clear any previous errors
+
+        if (!userApiKey) {
+            setError("API key is required to fetch weather data.");
+            setLoading(false);
+            return;
+        }
+
         try {
             const response = await axios.get<WeatherData>(
-                `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`
+                `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${userApiKey}`
             );
             setWeather(response.data);  // Store the weather data in state
         } catch (error) {
-            setError("Failed to fetch weather data. Please try again. Perhaps bad API key?");
+            setError("Failed to fetch weather data. Please try again.");
         } finally {
             setLoading(false);  // Set loading state to false
         }
@@ -70,9 +75,16 @@ const Weather: React.FC = () => {
     const fetchForecast = async () => {
         setLoading(true);  // Set loading state to true
         setError(null);    // Clear any previous errors
+
+        if (!userApiKey) {
+            setError("API key is required to fetch forecast data.");
+            setLoading(false);
+            return;
+        }
+
         try {
             const response = await axios.get<ForecastData>(
-                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`
+                `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${userApiKey}`
             );
             setForecast(response.data);  // Store the forecast data in state
         } catch (error) {
@@ -96,6 +108,13 @@ const Weather: React.FC = () => {
                 placeholder="Enter city"
                 value={city}
                 onChange={(e) => setCity(e.target.value)}  // Update the city state with user input
+            />
+            {/* Text box to allow user to input or change their API key */}
+            <input
+                type="text"
+                placeholder="Enter your API key"
+                value={userApiKey}
+                onChange={(e) => setUserApiKey(e.target.value)}  // Update the userApiKey state with user input
             />
             <button onClick={handleSearch}>Get Weather</button>
 
