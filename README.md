@@ -1,46 +1,79 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This Weather App is a React in TypeScript application that allows users to get the current weather and a 5-day forecast for any city. Users can enter the city name, and the app fetches real-time weather data using the OpenWeatherMap API. The app also allows users to toggle between Celsius and Fahrenheit, and it provides detailed weather information, including temperature, humidity, wind speed, pressure, and more.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Current Weather Information**: Get the latest weather details for any city, including temperature, humidity, wind speed, and weather description.
+- **5-Day Forecast**: View a detailed 5-day weather forecast with advanced details such as temperature, wind speed, pressure, and cloudiness.
+- **Unit Conversion**: Toggle between Celsius and Fahrenheit.
+- **Loading and Error Handling**: The app includes loading states and error handling to manage API requests effectively.
+- **Custom API Key Input**: Users can enter their own OpenWeatherMap API key directly in the app.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Prerequisites
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Node.js**: Make sure you have Node.js installed on your system.
+- **npm**: npm (Node Package Manager) is required to install dependencies.
 
-### `npm test`
+### Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**:
+    ```bash
+    git clone https://github.com/yourusername/weather-app.git
+    cd weather-app
+    ```
 
-### `npm run build`
+2. **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Set up the environment variables**:
+    - Create a `.env` file in the root directory of the project.
+    - Add your OpenWeatherMap API key to the `.env` file:
+    ```plaintext
+    OPENWEATHERMAP_API_KEY=YOUR_OPENWEATHERMAP_API_KEY
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    > Note: If the API key is not provided in the `.env` file, users can manually enter their API key in the app.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Start the application**:
+    ```bash
+    npm start
+    ```
 
-### `npm run eject`
+    The app should now be running on `http://localhost:3000`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+    Alternatively, the [GitHub pages site]() may be used.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. **Enter a city name** in the input field and click the "Get Weather" button to fetch the current weather and 5-day forecast.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+2. **Toggle between Celsius and Fahrenheit** by clicking the "Switch to Fahrenheit" or "Switch to Celsius" button.
 
-## Learn More
+3. **Enter or change the API key** using the provided input field if you have a different OpenWeatherMap API key.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Project Structure
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```plaintext
+├── public
+│   ├── index.html
+├── src
+│   ├── components
+│   │   ├── Weather.tsx     # Main Weather component
+│   ├── App.tsx             # Root component
+│   ├── index.tsx           # Entry point
+│   ├── Weather.css         # Styles for the Weather component
+│   └── ...
+├── .env                    # Environment variables (not included in the repo)
+├── package.json            # Project dependencies and scripts
+└── README.md               # Project documentation
+```
+
+## Dependencies
+* React: A JavaScript library for building user interfaces.
+* Axios: A promise-based HTTP client for making API requests.
+* react-icons: A library for including popular icons in your React project.
