@@ -52,12 +52,12 @@ button:hover {
 .forecast-container {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
 }
 
 .forecast-item {
   width: 30%;
   margin-top: 20px;
+  margin-right: 5px;
   padding: 10px;
   background: #f3f4f6;
   border-radius: 8px;
